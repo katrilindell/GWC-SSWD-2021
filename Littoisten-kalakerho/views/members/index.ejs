@@ -1,0 +1,27 @@
+<h2>Jäsenet</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Zip Code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% members.forEach(member => { %>
+    <tr>
+      <td>
+        <a href="<%= `/members/${member._id}` %>">
+          <%= member.fullName %>
+        </a>
+      </td>
+      <td>
+        <%= member.email %>
+      </td>
+      <td>
+        <%= member.zipCode %>
+      </td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
