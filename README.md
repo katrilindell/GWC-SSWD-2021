@@ -19,3 +19,6 @@ Requirements for the grade 0.5.
 · a template engine is used
 
 · the site functions
+
+
+run > npm install

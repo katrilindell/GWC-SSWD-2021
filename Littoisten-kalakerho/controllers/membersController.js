@@ -21,13 +21,12 @@ module.exports = {
     res.render("members/new");
   },
   create: (req, res, next) => {
-    let userParams = {
+    let memberParams = {
       name: {
         first: req.body.first,
         last: req.body.last
       },
       email: req.body.email,
-      password: req.body.password,
       zipCode: req.body.zipCode
     };
     Member.create(memberParams)
