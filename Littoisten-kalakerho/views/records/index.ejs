@@ -1,0 +1,32 @@
+<h2>Ennätykset</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Species</th>
+      <th>Weigth</th>
+      <th>Length</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% records.forEach(record => { %>
+    <tr>
+      <td>
+        <a href="<%= `/records/${record._id}` %>">
+          <%= record.fullName %>
+        </a>
+      </td>
+      <td>
+        <%= record.species %>
+      </td>
+      <td>
+        <%= record.weigth %>
+      </td>
+      <td>
+        <%= record.length %>
+      </td>
+    </tr>
+    <% }); %>
+  </tbody>
+  <a href="records/new">Lisää uusi ennätys</a>
+</table>
