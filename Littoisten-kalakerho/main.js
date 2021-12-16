@@ -1,14 +1,17 @@
 "use strict";
 
+
 const express = require("express"),
   app = express(),
   router = express.Router(),
   layouts = require("express-ejs-layouts"),
   mongoose = require("mongoose"),
+  methodOverride = require("method-override"),
   errorController = require("./controllers/errorController"),
   homeController = require("./controllers/homeController"),
   membersController = require("./controllers/membersController"),
-  kalakerhoController = require("./controllers/kalakerhoController")
+  kalakerhoController = require("./controllers/kalakerhoController"),
+  recordsController = require("./controllers/recordsController")
 mongoose.Promise = global.Promise;
 
 mongoose.connect(
@@ -34,17 +37,32 @@ router.use(
   })
 );
 
+router.use(
+  methodOverride("_method", {
+    methods: ["POST", "GET"]
+  })
+);
+
 router.use(express.json());
 router.use(homeController.logRequestPaths);
 
 router.get("/", homeController.index);
 router.get("/contact", homeController.getSubscriptionPage);
-router.get("/records", homeController.records);
+
 
 router.get("/members", membersController.index, membersController.indexView);
 router.get("/members/new", membersController.new);
 router.post("/members/create", membersController.create, membersController.redirectView);
+router.get("/members/:id/edit", membersController.edit);
+router.put("/members/:id/update", membersController.update, membersController.redirectView);
+router.delete("/members/:id/delete", membersController.delete, membersController.redirectView);
 router.get("/members/:id", membersController.show, membersController.showView);
+
+
+router.get("/records", recordsController.index, recordsController.indexView);
+router.get("/records/new", recordsController.new);
+router.post("/records/create", recordsController.create, recordsController.redirectView);
+router.get("/records/:id", recordsController.show, recordsController.showView);
 
 router.get("/kalakerho", kalakerhoController.index, kalakerhoController.indexView);
 router.get("/kalakerho/new", kalakerhoController.new);

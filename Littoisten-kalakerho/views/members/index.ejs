@@ -21,6 +21,14 @@
       <td>
         <%= member.zipCode %>
       </td>
+      <td>
+        <a href="<%=`/members/${member._id}/edit`%>">
+          Edit
+        </a>
+      </td>
+      <td>
+        <a href="<%=`/members/${member._id}/delete?_method=DELETE` %>" onclick="return confirm('Haluatko varmasti poistaa?')">Poista</a>
+      </td>
     </tr>
     <% }); %>
   </tbody>
